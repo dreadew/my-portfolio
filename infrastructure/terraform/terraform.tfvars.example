@@ -1,0 +1,8 @@
+# Copy this file to terraform.tfvars and fill in your values
+
+postgres_user          = "portfolio"
+postgres_password      = "portfolio"
+postgres_db            = "portfolio"
+postgres_port          = 5432
+app_port               = 3000
+admin_password_base64  = "YWRtaW4xMjM="  # base64 encoded admin password

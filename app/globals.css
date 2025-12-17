@@ -1,26 +1,335 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  
+  /* Achievement type colors */
+  --color-achievement-article: var(--achievement-article);
+  --color-achievement-article-bg: var(--achievement-article-bg);
+  --color-achievement-article-border: var(--achievement-article-border);
+  --color-achievement-rid: var(--achievement-rid);
+  --color-achievement-rid-bg: var(--achievement-rid-bg);
+  --color-achievement-rid-border: var(--achievement-rid-border);
+  --color-achievement-hackathon: var(--achievement-hackathon);
+  --color-achievement-hackathon-bg: var(--achievement-hackathon-bg);
+  --color-achievement-hackathon-border: var(--achievement-hackathon-border);
+  --color-achievement-conference: var(--achievement-conference);
+  --color-achievement-conference-bg: var(--achievement-conference-bg);
+  --color-achievement-conference-border: var(--achievement-conference-border);
+  --color-achievement-certificate: var(--achievement-certificate);
+  --color-achievement-certificate-bg: var(--achievement-certificate-bg);
+  --color-achievement-certificate-border: var(--achievement-certificate-border);
+  --color-achievement-other: var(--achievement-other);
+  --color-achievement-other-bg: var(--achievement-other-bg);
+  --color-achievement-other-border: var(--achievement-other-border);
+  
+  /* Programming language colors */
+  --color-lang-go: var(--lang-go);
+  --color-lang-typescript: var(--lang-typescript);
+  --color-lang-python: var(--lang-python);
+  --color-lang-javascript: var(--lang-javascript);
+  --color-lang-rust: var(--lang-rust);
+  --color-lang-default: var(--lang-default);
+  
+  /* Star color */
+  --color-star: var(--star);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+:root {
+  --radius: 0.75rem;
+  
+  /* Light theme - blue-violet tones */
+  --background: oklch(0.97 0.005 270);
+  --foreground: oklch(0.25 0.015 270);
+  
+  --card: oklch(0.99 0.003 270);
+  --card-foreground: oklch(0.25 0.015 270);
+  
+  --popover: oklch(0.99 0.003 270);
+  --popover-foreground: oklch(0.25 0.015 270);
+  
+  /* Primary - blue-violet */
+  --primary: oklch(0.55 0.15 270);
+  --primary-foreground: oklch(0.98 0 0);
+  
+  --secondary: oklch(0.93 0.015 270);
+  --secondary-foreground: oklch(0.35 0.02 270);
+  
+  --muted: oklch(0.93 0.008 270);
+  --muted-foreground: oklch(0.55 0.015 270);
+  
+  --accent: oklch(0.92 0.03 270);
+  --accent-foreground: oklch(0.35 0.02 270);
+  
+  --destructive: oklch(0.50 0.15 25);
+  
+  --border: oklch(0.90 0.015 270);
+  --input: oklch(0.93 0.008 270);
+  --ring: oklch(0.55 0.15 270);
+  
+  /* Blue-violet chart colors */
+  --chart-1: oklch(0.55 0.15 270);
+  --chart-2: oklch(0.50 0.12 250);
+  --chart-3: oklch(0.52 0.10 230);
+  --chart-4: oklch(0.58 0.13 290);
+  --chart-5: oklch(0.48 0.11 260);
+  
+  --sidebar: oklch(0.95 0.008 270);
+  --sidebar-foreground: oklch(0.25 0.015 270);
+  --sidebar-primary: oklch(0.55 0.15 270);
+  --sidebar-primary-foreground: oklch(0.98 0 0);
+  --sidebar-accent: oklch(0.91 0.03 270);
+  --sidebar-accent-foreground: oklch(0.35 0.02 270);
+  --sidebar-border: oklch(0.90 0.015 270);
+  --sidebar-ring: oklch(0.55 0.15 270);
+  
+  /* Gradient colors */
+  --gradient-from: oklch(0.60 0.18 280);
+  --gradient-via: oklch(0.55 0.16 260);
+  --gradient-to: oklch(0.50 0.14 240);
+  
+  /* Achievement type colors - semantic */
+  --achievement-article: oklch(0.50 0.10 240);
+  --achievement-article-bg: oklch(0.50 0.10 240 / 20%);
+  --achievement-article-border: oklch(0.50 0.10 240 / 30%);
+  
+  --achievement-rid: oklch(0.55 0.14 280);
+  --achievement-rid-bg: oklch(0.55 0.14 280 / 20%);
+  --achievement-rid-border: oklch(0.55 0.14 280 / 30%);
+  
+  --achievement-hackathon: oklch(0.52 0.16 300);
+  --achievement-hackathon-bg: oklch(0.52 0.16 300 / 20%);
+  --achievement-hackathon-border: oklch(0.52 0.16 300 / 30%);
+  
+  --achievement-conference: oklch(0.52 0.12 145);
+  --achievement-conference-bg: oklch(0.52 0.12 145 / 20%);
+  --achievement-conference-border: oklch(0.52 0.12 145 / 30%);
+  
+  --achievement-certificate: oklch(0.55 0.10 195);
+  --achievement-certificate-bg: oklch(0.55 0.10 195 / 20%);
+  --achievement-certificate-border: oklch(0.55 0.10 195 / 30%);
+  
+  --achievement-other: oklch(0.50 0.10 250);
+  --achievement-other-bg: oklch(0.50 0.10 250 / 20%);
+  --achievement-other-border: oklch(0.50 0.10 250 / 30%);
+  
+  /* Programming language colors */
+  --lang-go: oklch(0.60 0.12 195);
+  --lang-typescript: oklch(0.55 0.12 240);
+  --lang-python: oklch(0.70 0.14 90);
+  --lang-javascript: oklch(0.75 0.14 85);
+  --lang-rust: oklch(0.55 0.14 45);
+  --lang-default: oklch(0.55 0.10 260);
+  
+  /* Star/rating color */
+  --star: oklch(0.70 0.14 85);
+}
+
+.dark {
+  /* Dark theme - blue-violet, modern */
+  --background: oklch(0.14 0.008 270);
+  --foreground: oklch(0.75 0.01 270);
+  
+  --card: oklch(0.17 0.010 270);
+  --card-foreground: oklch(0.75 0.01 270);
+  
+  --popover: oklch(0.17 0.010 270);
+  --popover-foreground: oklch(0.75 0.01 270);
+  
+  /* Primary - blue-violet */
+  --primary: oklch(0.70 0.14 270);
+  --primary-foreground: oklch(0.14 0.004 270);
+  
+  --secondary: oklch(0.20 0.010 270);
+  --secondary-foreground: oklch(0.75 0.01 270);
+  
+  --muted: oklch(0.20 0.006 270);
+  --muted-foreground: oklch(0.55 0.012 270);
+  
+  --accent: oklch(0.24 0.02 270);
+  --accent-foreground: oklch(0.75 0.006 60);
+  
+  --destructive: oklch(0.55 0.12 25);
+  
+  --border: oklch(0.26 0.012 270 / 50%);
+  --input: oklch(0.18 0.010 270);
+  --ring: oklch(0.70 0.14 270);
+  
+  /* Blue-violet chart colors for dark */
+  --chart-1: oklch(0.70 0.12 270);
+  --chart-2: oklch(0.62 0.10 250);
+  --chart-3: oklch(0.58 0.08 230);
+  --chart-4: oklch(0.68 0.11 290);
+  --chart-5: oklch(0.56 0.09 260);
+  
+  --sidebar: oklch(0.15 0.008 270);
+  --sidebar-foreground: oklch(0.75 0.01 270);
+  --sidebar-primary: oklch(0.70 0.14 270);
+  --sidebar-primary-foreground: oklch(0.14 0.004 270);
+  --sidebar-accent: oklch(0.22 0.015 270);
+  --sidebar-accent-foreground: oklch(0.75 0.01 270);
+  --sidebar-border: oklch(0.26 0.012 270 / 50%);
+  --sidebar-ring: oklch(0.70 0.14 270);
+  
+  /* Gradient colors - blue-violet for dark theme */
+  --gradient-from: oklch(0.72 0.16 280 / 90%);
+  --gradient-via: oklch(0.68 0.14 260 / 90%);
+  --gradient-to: oklch(0.64 0.12 240 / 90%);
+  
+  /* Achievement type colors - semantic (softer for dark) */
+  --achievement-article: oklch(0.65 0.08 240);
+  --achievement-article-bg: oklch(0.50 0.08 240 / 20%);
+  --achievement-article-border: oklch(0.50 0.08 240 / 30%);
+  
+  --achievement-rid: oklch(0.68 0.12 280);
+  --achievement-rid-bg: oklch(0.55 0.12 280 / 20%);
+  --achievement-rid-border: oklch(0.55 0.12 280 / 30%);
+  
+  --achievement-hackathon: oklch(0.65 0.14 300);
+  --achievement-hackathon-bg: oklch(0.52 0.14 300 / 20%);
+  --achievement-hackathon-border: oklch(0.52 0.14 300 / 30%);
+  
+  --achievement-conference: oklch(0.65 0.09 145);
+  --achievement-conference-bg: oklch(0.52 0.09 145 / 20%);
+  --achievement-conference-border: oklch(0.52 0.09 145 / 30%);
+  
+  --achievement-certificate: oklch(0.68 0.08 195);
+  --achievement-certificate-bg: oklch(0.55 0.08 195 / 20%);
+  --achievement-certificate-border: oklch(0.55 0.08 195 / 30%);
+  
+  --achievement-other: oklch(0.60 0.08 250);
+  --achievement-other-bg: oklch(0.50 0.08 250 / 20%);
+  --achievement-other-border: oklch(0.50 0.08 250 / 30%);
+  
+  /* Programming language colors (softer for dark) */
+  --lang-go: oklch(0.68 0.10 195);
+  --lang-typescript: oklch(0.65 0.10 240);
+  --lang-python: oklch(0.75 0.12 90);
+  --lang-javascript: oklch(0.78 0.12 85);
+  --lang-rust: oklch(0.68 0.12 45);
+  --lang-default: oklch(0.60 0.08 260);
+  
+  /* Star/rating color */
+  --star: oklch(0.75 0.12 85);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Gradient text utility - uses theme colors */
+.gradient-text {
+  background: linear-gradient(
+    to right,
+    var(--gradient-from),
+    var(--gradient-via),
+    var(--gradient-to)
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Glow effects - blue-violet */
+.glow-primary {
+  box-shadow: 0 0 15px oklch(0.55 0.15 270 / 15%),
+              0 0 30px oklch(0.55 0.15 270 / 08%);
+}
+
+.dark .glow-primary {
+  box-shadow: 0 0 15px oklch(0.60 0.14 270 / 12%),
+              0 0 30px oklch(0.60 0.14 270 / 06%);
+}
+
+/* Card hover glow - slower transition, very subtle */
+.card-glow {
+  transition: box-shadow 0.5s ease-in-out;
+}
+
+.card-glow:hover {
+  box-shadow: 0 2px 15px oklch(0.55 0.15 270 / 8%);
+}
+
+.dark .card-glow:hover {
+  box-shadow: 0 0 20px oklch(0.60 0.14 270 / 08%);
+}
+
+/* Smooth scrollbar - Light theme */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: oklch(0.93 0.008 270);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: oklch(0.70 0.04 270);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.60 0.08 270);
+}
+
+/* Dark theme scrollbar */
+.dark::-webkit-scrollbar-track {
+  background: oklch(0.11 0.010 270);
+}
+
+.dark::-webkit-scrollbar-thumb {
+  background: oklch(0.30 0.04 270);
+}
+
+.dark::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.40 0.06 270);
 }

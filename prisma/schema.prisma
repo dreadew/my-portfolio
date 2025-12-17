@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Пет-проекты (задеплоенные)
+model Project {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  image       String?
+  url         String   // ссылка на задеплоенный проект
+  tags        String[] // технологии
+  featured    Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// GitHub репозитории
+model Repository {
+  id          String   @id @default(cuid())
+  name        String
+  description String?
+  url         String   // ссылка на репозиторий
+  stars       Int      @default(0)
+  language    String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Типы достижений
+enum AchievementType {
+  ARTICLE      // Научная статья
+  RID          // Результат интеллектуальной деятельности
+  CERTIFICATE  // Сертификат
+  HACKATHON    // Хакатон
+  CONFERENCE   // Конференция
+  OTHER        // Другое
+}
+
+// Достижения
+model Achievement {
+  id          String          @id @default(cuid())
+  type        AchievementType
+  title       String
+  description String?
+  url         String?         // ссылка (если есть)
+  date        DateTime?
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+}
